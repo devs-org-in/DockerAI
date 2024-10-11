@@ -21,11 +21,17 @@ export function DockerFileGeneratorComponent() {
   const [dockerFileInstructions, setDockerFileInstructions] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState('')
+  const [downloadUrl, setDownloadUrl] = useState('')
 
   useEffect(() => {
-    console.log('GROQ_API_KEY:', GROQ_API_KEY)
-    console.log('GITHUB_TOKEN:', GITHUB_TOKEN)
-  }, [])
+    if (dockerFile) {
+      const blob = new Blob([dockerFile], { type: 'text/plain' })
+      const url = URL.createObjectURL(blob)
+      setDownloadUrl(url)
+    } else {
+      setDownloadUrl('')
+    }
+  }, [dockerFile])
 
   const handleGenerateDockerFile = async () => {
     setIsLoading(true)
@@ -39,7 +45,7 @@ export function DockerFileGeneratorComponent() {
     }
   
     const octokit = new Octokit({ auth: GITHUB_TOKEN })
-    const groq = new Groq({ apiKey: GROQ_API_KEY })
+    const groq = new Groq({ apiKey: GROQ_API_KEY, dangerouslyAllowBrowser: true })
   
     try {
       const response = await getGithubRepoData(octokit, githubOwner, githubRepo)
@@ -155,6 +161,11 @@ export function DockerFileGeneratorComponent() {
               className="font-mono"
               rows={10}
             />
+            <a href={downloadUrl} download="Dockerfile">
+              <Button className="mt-4">
+                Download Dockerfile
+              </Button>
+            </a>
           </CardContent>
         </Card>
       )}
