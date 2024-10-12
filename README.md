@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AI-Powered Docker File Generator
 
-## Getting Started
+This project is a web application that generates Dockerfiles for GitHub repositories using AI. It leverages the GitHub API to fetch repository data and the Groq AI API to generate Dockerfile instructions based on user input.
 
-First, run the development server:
+## Table of Contents
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- [Installation](#installation)
+- [Usage](#usage)
+- [Environment Variables](#environment-variables)
+- [Components](#components)
+- [Contributing](#contributing)
+- [License](#license)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+    ```sh
+    git clone https://github.com/your-username/your-repo.git
+    cd your-repo
+    ```
 
-## Learn More
+2. Install dependencies:
 
-To learn more about Next.js, take a look at the following resources:
+    ```sh
+    npm install
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. Create a `.env` file in the root directory and add your environment variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+    ```sh
+    NEXT_PUBLIC_GROQ_API_KEY=your_groq_api_key
+    NEXT_PUBLIC_GITHUB_TOKEN=your_github_token
+    ```
 
-## Deploy on Vercel
+4. Run the development server:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```sh
+    npm run dev
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
+
+## Usage
+
+1. Enter your GitHub username and repository name.
+2. Provide instructions for how you want your Dockerfile to be generated.
+3. Click the "Generate Docker File" button.
+4. The generated Dockerfile will be displayed, and you can download it.
+
+## Environment Variables
+
+- `NEXT_PUBLIC_GROQ_API_KEY`: Your Groq API key.
+- `NEXT_PUBLIC_GITHUB_TOKEN`: Your GitHub token.
+
+## Components
+
+### `DockerFileGeneratorComponent`
+
+Located in [`components/docker-file-generator.tsx`](components/docker-file-generator.tsx), this component handles the main functionality of the application.
+
+#### State Variables
+
+- `dockerFile`: Stores the generated Dockerfile content.
+- `githubRepo`: Stores the GitHub repository name.
+- `githubOwner`: Stores the GitHub username.
+- `dockerFileInstructions`: Stores the user-provided instructions for generating the Dockerfile.
+- `isLoading`: Indicates whether the Dockerfile generation is in progress.
+- `error`: Stores any error messages.
+- `downloadUrl`: Stores the URL for downloading the generated Dockerfile.
+
+#### Functions
+
+- `handleGenerateDockerFile`: Handles the Dockerfile generation process.
+- `getGroqChatCompletion`: Fetches the AI-generated Dockerfile instructions from the Groq API.
+- `getGithubRepoData`: Fetches the repository data from the GitHub API.
+
+### UI Components
+
+- `Input`: Custom input component.
+- `Button`: Custom button component.
+- `Textarea`: Custom textarea component.
+- `Label`: Custom label component.
+- `Card`, `CardContent`, `CardDescription`, `CardHeader`, `CardTitle`: Custom card components.
+- `Alert`, `AlertDescription`: Custom alert components.
+
+## Contributing
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Make your changes.
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to the branch (`git push origin feature-branch`).
+6. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
