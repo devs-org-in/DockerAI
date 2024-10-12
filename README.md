@@ -96,3 +96,14 @@ Located in [`components/docker-file-generator.tsx`](components/docker-file-gener
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+<br>
+<div align="center">
+<a href="https://groq.com" target="_blank" rel="noopener noreferrer">
+  <img
+    height="80px"
+    src="https://groq.com/wp-content/uploads/2024/03/PBG-mark1-color.svg"
+    alt="Powered by Groq for fast inference."
+  />
+</a>
+</div>
