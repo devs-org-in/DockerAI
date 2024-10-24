@@ -1,6 +1,8 @@
-# AI-Powered Docker File Generator
 
-This project is a web application that generates Dockerfiles for GitHub repositories using AI. It leverages the GitHub API to fetch repository data and the Groq AI API to generate Dockerfile instructions based on user input.
+![dockerai-banner](https://github.com/user-attachments/assets/f7cd29bf-8170-4eb3-acea-ab7ed64a50f2)
+
+
+AI-Powered Docker File Generator - This project is a web application that generates Dockerfiles for GitHub repositories using AI. It leverages the GitHub API to fetch repository data and the Groq AI API to generate Dockerfile instructions based on user input.
 
 ## Table of Contents
 
